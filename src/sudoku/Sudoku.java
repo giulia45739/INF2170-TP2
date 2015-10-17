@@ -16,6 +16,8 @@ public class Sudoku {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        // test github 
+        System.out.println("Hello World!");
     }
     
 }
