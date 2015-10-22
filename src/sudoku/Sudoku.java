@@ -25,6 +25,7 @@ public class Sudoku {
             gestionCommande(commande); 
         }
     }
+    // Methode d'initialisation
     public static char[] remplirTempSudoku(){
         char[] tempSudoku = new char[20];
         char tempChar;
@@ -81,7 +82,8 @@ public class Sudoku {
                         break; 
         }
     }
-
+    
+    // Methode de commandes
     public static void commandeQ(){
         System.exit(0);
     }
