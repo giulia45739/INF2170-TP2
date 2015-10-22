@@ -106,12 +106,18 @@ public class Sudoku {
         placerChiffre(caseJouee, toChar(chiffreJoue));
     }
     
-    public static void commandePointInter(){
+    public static boolean commandePointInter(){
         
     }
     
     public static void commandeS(){
-        
+        boolean estGagne = resoudreGrille();
+        if(estGagne){
+            System.out.println("Solution");
+        }
+        else{
+            System.out.println("Pas de solution");
+        }
     }
     
     // Methodes de P
@@ -178,5 +184,27 @@ public class Sudoku {
     
     public static void chiffreToArray(int i, int j, char chiffre){
         sudoku[i][j] = chiffre;
+    }
+    
+    // Methode de S
+    public static boolean resoudreGrille(){
+        int x = premiereCaseVide();
+        for(int i = 0; i < 4; i++){
+            placerChiffre(x, toChar(i));
+            if(resoudreGrille()){
+                return true;
+            }
+        }
+        placerChiffre(x, '.');
+        return false;
+    }
+    
+    public static int premiereCaseVide(){
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 5; j++){
+                if(sudoku[i][j] == '.')return (i*4 + j)+1; // Calcul de la case (1-16)
+            }
+        }
+        return 0;
     }
 }
