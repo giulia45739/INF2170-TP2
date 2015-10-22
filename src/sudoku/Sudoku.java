@@ -215,7 +215,7 @@ public class Sudoku {
             return true; 
         }
         
-        valeur = sudoku[ligne][col+1];
+        valeur = sudoku[ligne][col++];
         if(sudoku[ligne+1][col-1] != '.' && valeur == sudoku[ligne+1][col-1]){
             return true; 
         }
