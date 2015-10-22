@@ -107,7 +107,7 @@ public class Sudoku {
     }
     
     public static boolean commandePointInter(){
-        
+        return true;
     }
     
     public static void commandeS(){
