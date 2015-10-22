@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package sudoku;
-
 /**
  *
  * @author Utilisateur
@@ -15,11 +14,60 @@ public class Sudoku {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        // test github 
-        System.out.println("Hello World!");
-        System.out.println("Hello Giulia!!");
+        char[][] sudoku = new char[5][5];
+        char[] tempSudoku = new char[20];
+        
+        tempSudoku = remplirTempSudoku();
+        sudoku = remplirSudoku(tempSudoku);
+        
+        
+        System.out.println("------------");
+        System.out.println(tempSudoku);
+        System.out.println("------------");
+        System.out.println(sudoku);
         
     }
+    public static char[] remplirTempSudoku(){
+        char[] tempSudoku = new char[20];
+        char tempChar;
+        for(int i = 0; i < 20; i++){
+            tempChar = Pep8.chari();
+            gestionCaractereIllegaux(tempChar);
+            gestionSautDeLigne(tempChar, i);
+            tempSudoku[i] = tempChar;
+        }
+        return tempSudoku;
+    }
     
+    public static void gestionCaractereIllegaux(char c){
+        //System.out.print("Nous somme ici!");
+        if(c != '1' && c != '2' && c != '3' && c != '4' && c != '.' && c != '\n'){
+            System.out.println("Caractere Inconnu!");
+            System.exit(0);
+        }
+    }
+    
+    public static void gestionSautDeLigne(char c, int i){
+        switch (i) {
+            case 4: case 9: case 14: case 19:
+                if(c != '\n'){
+                    System.out.println("Erreur!! Array Illegal!");
+                    System.exit(0);
+                }
+            break;
+        }
+    }
+
+    public static char[][] remplirSudoku(char[] arrayTemp){
+        char[][] sudoku = new char[4][5];
+        int k = 0;
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 5; j++){
+                sudoku[i][j] = arrayTemp[k];
+                k++;
+            }
+        }
+        return sudoku;
+    }
+
 }
