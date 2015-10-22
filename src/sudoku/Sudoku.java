@@ -211,12 +211,12 @@ public class Sudoku {
     
     public static boolean doubleDansCarre(int ligne, int col){
         int valeur = sudoku[ligne][col];   
-        if(valeur == sudoku[ligne+1][col+1]){
+        if(sudoku[ligne+1][col+1] != '.' && valeur == sudoku[ligne+1][col+1]){
             return true; 
         }
         
         valeur = sudoku[ligne][col+1];
-        if(valeur == sudoku[ligne+1][col-1]){
+        if(sudoku[ligne+1][col-1] != '.' && valeur == sudoku[ligne+1][col-1]){
             return true; 
         }
         return false; 
@@ -231,7 +231,7 @@ public class Sudoku {
             
             // takes each column except itself and checks if it equals. If equals returns true 
             for(int autreCol = col +1; autreCol < 4; autreCol++){
-                if(valeur == sudoku[ligne][autreCol]){
+                if(sudoku[ligne][autreCol] != '.' && valeur == sudoku[ligne][autreCol]){
                     return true; 
                 }
             }
@@ -248,7 +248,7 @@ public class Sudoku {
             
             // takes each column except itself and checks if it equals. If equals returns true 
             for(int autreLigne = ligne +1; autreLigne < 4; autreLigne++){
-                if(valeur == sudoku[autreLigne][col]){
+                if(sudoku[autreLigne][col] != '.' && valeur == sudoku[autreLigne][col]){
                     return true; 
                 }
             }
