@@ -20,12 +20,10 @@ public class Sudoku {
         tempSudoku = remplirTempSudoku();
         sudoku = remplirSudoku(tempSudoku);
         
-        
-        System.out.println("------------");
-        System.out.println(tempSudoku);
-        System.out.println("------------");
-        System.out.println(sudoku);
-        
+        while(true){
+            char commande = Pep8.chari(); 
+            gestionCommande(commande); 
+        }
     }
     public static char[] remplirTempSudoku(){
         char[] tempSudoku = new char[20];
@@ -69,5 +67,17 @@ public class Sudoku {
         }
         return sudoku;
     }
-
+    
+    public static void gestionCommande(char commande){
+        switch (commande) {
+            case 'w':   commandeW();
+                        // ignore le saut de ligne qui suit 
+                        Pep8.chari();
+                        break; 
+            case 'q':   commandeQ(); 
+                        break; 
+            default: System.out.println("Commande Invalide!");
+                        break; 
+        }
+    }
 }
