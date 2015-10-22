@@ -9,22 +9,23 @@ package sudoku;
  * @author Utilisateur
  */
 public class Sudoku {
-
+    static char[][] sudoku = new char[5][5];
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        char[][] sudoku = new char[5][5];
+        
         char[] tempSudoku = new char[20];
         
         tempSudoku = remplirTempSudoku();
         sudoku = remplirSudoku(tempSudoku);
         
+        commandeW();
         
-        System.out.println("------------");
+        /*System.out.println("------------");
         System.out.println(tempSudoku);
         System.out.println("------------");
-        System.out.println(sudoku);
+        commandeQ();*/
         
     }
     public static char[] remplirTempSudoku(){
@@ -70,4 +71,15 @@ public class Sudoku {
         return sudoku;
     }
 
+    public static void commandeQ(){
+        System.exit(0);
+    }
+    
+    public static void commandeW(){
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 5; j++){
+                System.out.print(sudoku[i][j]);
+            }
+        }
+    }
 }
