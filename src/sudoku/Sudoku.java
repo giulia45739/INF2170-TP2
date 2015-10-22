@@ -107,23 +107,22 @@ public class Sudoku {
         placerChiffre(caseJouee, toChar(chiffreJoue));
     }
     
-    public static void commandePointInter(){
-        // Pour chaque ligne  
-        for(int ligne = 0; ligne < 4; ligne++){
-            estDouble(doubleDansLigne(ligne, sudoku));  
+    public static boolean commandePointInter(){
+        if(verifierSiPerdu()){
+            System.out.println("Perdu!");
+            return false; 
+        } 
+        else if(verifierSiJouer()){
+            System.out.println("Jouer!");
+            return false; 
         }
-        
-        // Pour chaque colonne 
-        for(int col = 0; col < 4; col++){
-            estDouble(doubleDansColonne(col)); 
+        else{
+            System.out.println("Bravo!");
+            return true; 
         }
-        
-        // Pour chaque carre
-        estDouble(doubleDansCarre(0,0)); 
-        estDouble(doubleDansCarre(0,2)); 
-        estDouble(doubleDansCarre(2,0));
-        estDouble(doubleDansCarre(2,2)); 
     }
+    
+
     
     public static void commandeS(){
         boolean estGagne = resoudreGrille();
@@ -202,13 +201,6 @@ public class Sudoku {
     }
     
     // Methodes de ? 
-    public static void estDouble(boolean b){
-        if(b){
-            System.out.println("Perdu!"); 
-            System.exit(0); 
-        }
-    }
-    
     public static boolean doubleDansCarre(int ligne, int col){
         int valeur = sudoku[ligne][col];   
         if(sudoku[ligne+1][col+1] != '.' && valeur == sudoku[ligne+1][col+1]){
@@ -249,6 +241,35 @@ public class Sudoku {
             // takes each column except itself and checks if it equals. If equals returns true 
             for(int autreLigne = ligne +1; autreLigne < 4; autreLigne++){
                 if(sudoku[autreLigne][col] != '.' && valeur == sudoku[autreLigne][col]){
+                    return true; 
+                }
+            }
+        }
+        return false; 
+    }
+    
+    public static boolean verifierSiPerdu(){
+       // Pour chaque ligne  
+        for(int ligne = 0; ligne < 4; ligne++){
+            return doubleDansLigne(ligne, sudoku);  
+        }
+        
+        // Pour chaque colonne 
+        for(int col = 0; col < 4; col++){
+            return doubleDansColonne(col); 
+        }
+        
+        // Pour chaque carre
+        if(doubleDansCarre(0,0) || doubleDansCarre(0,2) || doubleDansCarre(2,0) || doubleDansCarre(2,2)){
+            return true; 
+        }
+        return false; 
+    }
+    
+    public static boolean verifierSiJouer(){
+        for(int ligne =0; ligne <4; ligne++){
+            for(int col =0; col <4; col++){
+                if(sudoku[ligne][col] == '.'){
                     return true; 
                 }
             }
