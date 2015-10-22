@@ -10,9 +10,7 @@ package sudoku;
  */
 public class Sudoku {
     static char[][] sudoku = new char[5][5];
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         
         char[] tempSudoku = new char[20];
@@ -25,7 +23,7 @@ public class Sudoku {
             gestionCommande(commande); 
         }
     }
-    // Methode d'initialisation
+    // Methodes d'initialisation
     public static char[] remplirTempSudoku(){
         char[] tempSudoku = new char[20];
         char tempChar;
@@ -39,7 +37,6 @@ public class Sudoku {
     }
     
     public static void gestionCaractereIllegaux(char c){
-        //System.out.print("Nous somme ici!");
         if(c != '1' && c != '2' && c != '3' && c != '4' && c != '.' && c != '\n'){
             System.out.println("Caractere Inconnu!");
             System.exit(0);
@@ -95,7 +92,7 @@ public class Sudoku {
         }
     }
     
-    // Methode de commandes
+    // Methodes de commandes
     public static void commandeQ(){
         System.exit(0);
     }
