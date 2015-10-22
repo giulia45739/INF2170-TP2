@@ -76,6 +76,18 @@ public class Sudoku {
                         break; 
             case 'q':   commandeQ(); 
                         break; 
+            case 'p':   commandeP(); 
+                        // ignore le saut de ligne qui suit 
+                        Pep8.chari();
+                        break;
+            case '?':   commandePointInter(); 
+                        // ignore le saut de ligne qui suit 
+                        Pep8.chari();
+                        break;
+            case 's':   commandeS();
+                        // ignore le saut de ligne qui suit 
+                        Pep8.chari();
+                        break;
             default:    System.out.println("Commande Invalide!");
                         commandeQ(); 
                         break; 
@@ -93,4 +105,17 @@ public class Sudoku {
             }
         }
     }
+    
+    public static void commandeP(){
+        
+    }
+    
+    public static void commandePointInter(){
+        
+    }
+    
+    public static void commandeS(){
+        
+    }
+    
 }
