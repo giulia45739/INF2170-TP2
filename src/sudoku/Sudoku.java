@@ -20,13 +20,6 @@ public class Sudoku {
         tempSudoku = remplirTempSudoku();
         sudoku = remplirSudoku(tempSudoku);
         
-        commandeW();
-        
-        /*System.out.println("------------");
-        System.out.println(tempSudoku);
-        System.out.println("------------");
-        commandeQ();*/
-        
     }
     public static char[] remplirTempSudoku(){
         char[] tempSudoku = new char[20];
