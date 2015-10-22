@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sudoku;
-/**
- *
- * @author Utilisateur
- */
+
 public class Sudoku {
     static char[][] sudoku = new char[5][5];
     
@@ -122,8 +115,6 @@ public class Sudoku {
         }
     }
     
-
-    
     public static void commandeS(){
         boolean estGagne = resoudreGrille();
         if(estGagne){
@@ -214,7 +205,7 @@ public class Sudoku {
         return false; 
     }
     
-    public static boolean doubleDansLigne(int ligne, char[][] arrayDouble){
+    public static boolean doubleDansLigne(int ligne){
         // for each colunm 
         for(int col = 0; col < 4; col++){
             
@@ -251,7 +242,7 @@ public class Sudoku {
     public static boolean verifierSiPerdu(){
        // Pour chaque ligne  
         for(int ligne = 0; ligne < 4; ligne++){
-            return doubleDansLigne(ligne, sudoku);  
+            return doubleDansLigne(ligne);  
         }
         
         // Pour chaque colonne 
@@ -279,6 +270,13 @@ public class Sudoku {
     
     // Methode de S
     public static boolean resoudreGrille(){
+        // Retourne true is Bravo 
+        if(verifierSiPerdu()){
+            return false; 
+        }
+        else if(!verifierSiJouer()){
+            return true; 
+        }
         int x = premiereCaseVide();
         for(int i = 0; i < 4; i++){
             placerChiffre(x, toChar(i));
