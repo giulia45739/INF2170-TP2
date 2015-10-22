@@ -23,6 +23,7 @@ public class Sudoku {
             gestionCommande(commande); 
         }
     }
+    
     // Methodes d'initialisation
     public static char[] remplirTempSudoku(){
         char[] tempSudoku = new char[20];
@@ -78,7 +79,7 @@ public class Sudoku {
                         // ignore le saut de ligne qui suit 
                         Pep8.chari();
                         break;
-            case '?':   commandePointInter(); 
+            case '?':   commandePointInter();
                         // ignore le saut de ligne qui suit 
                         Pep8.chari();
                         break;
@@ -109,9 +110,7 @@ public class Sudoku {
         
     }
     
-    public static void commandePointInter(){
-        
-    }
+
     
     public static void commandeS(){
         
