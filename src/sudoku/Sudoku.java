@@ -60,6 +60,7 @@ public class Sudoku {
         return sudoku;
     }
     
+    // Gestion des commandes entrees dans le programme
     public static void gestionCommande(char commande){
         switch (commande) {
             case 'w':   commandeW();
@@ -125,7 +126,7 @@ public class Sudoku {
         }
     }
     
-    // Methodes de P
+    // Methodes utilisees par P
     public static void gestionCaseJouee(int x){
         if(x > 16 || x < 1){
             System.out.println("Mauvais coup");
@@ -191,7 +192,7 @@ public class Sudoku {
         sudoku[i][j] = chiffre;
     }
     
-    // Methodes de ? 
+    // Methodes utilisees PointInter (?)
     public static boolean doubleDansCarre(int ligne, int col){
         int valeur = sudoku[ligne][col];   
         if(sudoku[ligne+1][col+1] != '.' && valeur == sudoku[ligne+1][col+1]){
@@ -272,7 +273,7 @@ public class Sudoku {
         return false; 
     }
     
-    // Methode de S
+    // Methodes utilisee par S
     public static boolean resoudreGrille(){
         // Retourne true is Bravo 
         if(verifierSiPerdu()){
@@ -282,7 +283,7 @@ public class Sudoku {
             return true; 
         }
         int x = premiereCaseVide();
-        for(int i = 0; i < 4; i++){
+        for(int i = 1; i <= 4; i++){
             placerChiffre(x, toChar(i));
             if(resoudreGrille()){
                 return true;
