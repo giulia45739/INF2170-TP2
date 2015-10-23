@@ -242,12 +242,16 @@ public class Sudoku {
     public static boolean verifierSiPerdu(){
        // Pour chaque ligne  
         for(int ligne = 0; ligne < 4; ligne++){
-            return doubleDansLigne(ligne);  
+            if(doubleDansLigne(ligne)){
+                return true;
+            }
         }
         
         // Pour chaque colonne 
         for(int col = 0; col < 4; col++){
-            return doubleDansColonne(col); 
+            if(doubleDansColonne(col)){
+                return true;
+            }
         }
         
         // Pour chaque carre
@@ -261,7 +265,7 @@ public class Sudoku {
         for(int ligne =0; ligne <4; ligne++){
             for(int col =0; col <4; col++){
                 if(sudoku[ligne][col] == '.'){
-                    return true; 
+                    return true;
                 }
             }
         }
