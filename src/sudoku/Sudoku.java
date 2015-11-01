@@ -1,16 +1,34 @@
 
 package sudoku;
 
+/*
+Le programme suivant prend en entree un sudoku 4x4 et propose plusieurs
+    options a l'utilisateur :
+Option w -> Affiche la grille dans son etat actuel
+Option q -> Quitte le programme
+Option p n1 n2 -> Joue n2 dans la case n1 (voir plus bas les # de cases)
+Option ? -> Verifie si le sudoku est gagnant, perdant ou s'il reste des cases libres
+Option s -> Resout (si c'est possible) le sudoku dans son etat actuel
+
+Le programme est separe efficacement en plusieurs methodes qui ont chacune
+une tache bien precise.
+
+Limite du programme :
+
+La methode placeChiffre(int caseJouee, char chiffre) n'est pas optimale
+
+*/
 public class Sudoku {
+    // La variable sudoku est static afin que toutes les methodes puissent y
+    // acceder
     static char[][] sudoku = new char[5][5];
     
     public static void main(String[] args) {
         
-        char[] tempSudoku = new char[20];
-        
+        char[] tempSudoku;
         tempSudoku = remplirTempSudoku();
         sudoku = remplirSudoku(tempSudoku);
-        System.out.println("-----------------------");
+        
         while(true){
             char commande = Pep8.chari();
             gestionCommande(commande); 
@@ -18,6 +36,11 @@ public class Sudoku {
     }
     
     // Methodes d'initialisation
+    
+    // La methode remplirTempSudoku prend les 20 caracteres qui constituent le
+    //  sudoku et les places dans un tableau 1 dimension
+    // Chaque caractere est verifie par les methodes gestionCaractereIllegaux
+    //  et gestionSautDeLigne
     public static char[] remplirTempSudoku(){
         char[] tempSudoku = new char[20];
         char tempChar;
@@ -37,6 +60,8 @@ public class Sudoku {
         }
     }
     
+    // La methode gestionSautDeLigne s'assure qu'apres 4 chiffres il y a bien un
+    // saut de ligne
     public static void gestionSautDeLigne(char c, int i){
         switch (i) {
             case 4: case 9: case 14: case 19:
@@ -47,7 +72,8 @@ public class Sudoku {
             break;
         }
     }
-
+    
+    // Transforme un tableau 1 dimension en tableau 2 dimensions
     public static char[][] remplirSudoku(char[] arrayTemp){
         char[][] sudoku = new char[4][5];
         int k = 0;
@@ -60,7 +86,9 @@ public class Sudoku {
         return sudoku;
     }
     
+    
     // Gestion des commandes entrees dans le programme
+    
     public static void gestionCommande(char commande){
         switch (commande) {
             case 'w':   commandeW();
@@ -81,6 +109,7 @@ public class Sudoku {
     }
     
     // Methodes de commandes
+    
     public static void commandeQ(){
         System.exit(0);
     }
@@ -127,6 +156,8 @@ public class Sudoku {
     }
     
     // Methodes utilisees par P
+    
+    // Verifie si la case joue existe
     public static void gestionCaseJouee(int x){
         if(x > 16 || x < 1){
             System.out.println("Mauvais coup");
@@ -134,6 +165,7 @@ public class Sudoku {
         }
     }
     
+    // Verifie si le chiffre joue est valide
     public static void gestionChiffreJoue(int x){
         if(x > 4 || x < 1){
             System.out.println("Mauvais coup");
@@ -193,6 +225,8 @@ public class Sudoku {
     }
     
     // Methodes utilisees PointInter (?)
+    
+    // Verifie si les valeurs sont uniques dans tous les carres
     public static boolean doubleDansCarre(int ligne, int col){
         int valeur = sudoku[ligne][col];   
         if(sudoku[ligne+1][col+1] != '.' && valeur == sudoku[ligne+1][col+1]){
@@ -206,14 +240,12 @@ public class Sudoku {
         return false; 
     }
     
+    // Verifie si les valeurs sont uniques dans toutes les ligne
     public static boolean doubleDansLigne(int ligne){
-        // for each colunm 
         for(int col = 0; col < 4; col++){
-            
-            // stores the value to be compares 
+             
             int valeur = sudoku[ligne][col]; 
-            
-            // takes each column except itself and checks if it equals. If equals returns true 
+             
             for(int autreCol = col +1; autreCol < 4; autreCol++){
                 if(sudoku[ligne][autreCol] != '.' && valeur == sudoku[ligne][autreCol]){
                     return true; 
@@ -223,14 +255,12 @@ public class Sudoku {
         return false; 
     }
     
+    // Verifie si les valeurs sont uniques dans toutes les colonnes
     public static boolean doubleDansColonne(int col){
-        // for each colunm 
         for(int ligne = 0; ligne < 4; ligne++){
             
-            // stores the value to be compares 
             int valeur = sudoku[ligne][col]; 
-            
-            // takes each column except itself and checks if it equals. If equals returns true 
+             
             for(int autreLigne = ligne +1; autreLigne < 4; autreLigne++){
                 if(sudoku[autreLigne][col] != '.' && valeur == sudoku[autreLigne][col]){
                     return true; 
@@ -274,8 +304,9 @@ public class Sudoku {
     }
     
     // Methodes utilisee par S
+    
+    // La methode est basee sur le pseudo-code fournis
     public static boolean resoudreGrille(){
-        // Retourne true is Bravo 
         if(verifierSiPerdu()){
             return false; 
         }
@@ -293,10 +324,12 @@ public class Sudoku {
         return false;
     }
     
+    // Retourne la position de la premiere case qui contient un point
     public static int premiereCaseVide(){
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 5; j++){
-                if(sudoku[i][j] == '.')return (i*4 + j)+1; // Calcul de la case (1-16)
+                // Calcul de la case (1-16)
+                if(sudoku[i][j] == '.')return (i*4 + j)+1;
             }
         }
         return 0;
